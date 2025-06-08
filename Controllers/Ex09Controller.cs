@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 /// <summary>
-/// 演習-08 HTML Formを作成するタグヘルパーを利用する
+/// 演習-09 HTML Formを作成するタグヘルパーを利用する
 /// </summary>
-[Route("Exercise08")]
-public class Ex08Controller : Controller
+[Route("Exercise09")]
+public class Ex09Controller : Controller
 {
     /// <summary>
     /// 入力画面を表示する
