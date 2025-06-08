@@ -16,6 +16,10 @@ public class Ex08Controller : Controller
         return View(form);
     }
 
+    /// <summary>
+    /// [計算]ボタンクリックアクション
+    /// </summary>
+    /// <returns></returns>
     [HttpPost("Result")]
     public IActionResult Result(Exercise07Form form)
     {
@@ -23,6 +27,10 @@ public class Ex08Controller : Controller
         return View(form);
     }
 
+    /// <summary>
+    /// [戻る]ボタンクリックアクション
+    /// </summary>
+    /// <returns></returns>
     [HttpGet("Back")]
     public IActionResult Back()
     {

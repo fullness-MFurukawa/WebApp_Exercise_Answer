@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 [Route("Exercise07")]
 public class Ex07Controller : Controller
 {
-
     /// <summary>
     /// 入力値を加算した結果を返す
     /// </summary>
