@@ -23,6 +23,11 @@ public class Ex09Controller : Controller
     [HttpPost("Result")]
     public IActionResult Result(Exercise07Form form)
     {
+        // バリデーションチェック
+        if (!ModelState.IsValid)
+        {
+            return View("Enter",form);
+        }
         form.Answer = form.Value1 + form.Value2;
         return View(form);
     }

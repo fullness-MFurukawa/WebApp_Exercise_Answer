@@ -1,10 +1,13 @@
-@model Exercise07Form
+@model Op03Form
 @{
-    ViewData["Title"] = "演習-09 HTML Formを作成するタグヘルパーを利用する";
+    ViewData["Title"] = "オプション演習-04 タグヘルパーを利用する";
 }
 <h2>@ViewData["Title"]</h2>
-<div class="d-flex justify-content-center">
-    <form asp-controller="Exercise09" asp-action="Result" method="post">
+<div class="d-flex flex-column align-items-center">
+<!--
+    <div class="d-flex justify-content-center"> 
+--> 
+    <form asp-controller="Option04" asp-action="Result" method="post">
         @Html.AntiForgeryToken()
         <div class="mb-3">
             <label asp-for="Value1" class="form-label"></label>
@@ -16,6 +19,11 @@
             <input asp-for="Value2" class="form-control" />
             <span asp-validation-for="Value2" class="text-danger"></span>
         </div>
+        <div class="mb-3">
+            <label asp-for="Opt" class="form-label"></label>
+            <select asp-for="Opt" asp-items="Model.OptList" class="form-control"></select>
+            <span asp-validation-for="Opt" class="text-danger"></span>
+        </div> 
         <div class="text-center">
             <button type="submit" class="btn btn-primary">計算</button>
         </div>
