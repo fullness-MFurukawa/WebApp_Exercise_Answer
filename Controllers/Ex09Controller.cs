@@ -47,10 +47,10 @@ public class Ex09Controller : Controller
         {
             // TempDataからERxercise07Formを取り出す
             string? json = (string ) TempData["Exercise07Form"]!;
-            if (json == null)
+            if (string.IsNullOrEmpty(json))
             {
-                // TempDataにExercise07Formが無い場合、入力画面を表示する
-                return View("Enter");
+                // TempDataにExercise07Formが無い場合、入力画面表示にリダイレクトする
+                return RedirectToAction("Enter");
             }
             // 存在する場合はデシリアライズする
             var form = JsonSerializer.Deserialize<Exercise07Form>(json);
