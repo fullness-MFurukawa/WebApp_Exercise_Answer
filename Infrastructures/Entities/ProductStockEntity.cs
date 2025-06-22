@@ -24,5 +24,5 @@ public class ProductStockEntity {
     /// 外部キーで結合する商品
     /// </summary>
     [ForeignKey("ProductId")]
-    public ProductEntity Product { get; set; }
+    public ProductEntity? Product { get; set; }
 }

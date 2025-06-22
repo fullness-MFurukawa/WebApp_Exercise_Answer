@@ -30,10 +30,10 @@ public class ProductEntity
     /// 外部で結合する商品カテゴリ
     /// </summary>
     [ForeignKey("CategoryId")]
-    public ProductCategoryEntity Category { get; set; }
+    public ProductCategoryEntity? Category { get; set; }
     /// <summary>
     /// ナビゲーション（1対1）
     /// 商品在庫
     /// </summary>
-    public ProductStockEntity Stock { get; set; }
+    public ProductStockEntity? Stock { get; set; }
 }
