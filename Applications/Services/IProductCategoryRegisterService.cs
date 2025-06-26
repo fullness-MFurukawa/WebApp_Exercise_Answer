@@ -1,5 +1,8 @@
 using WebApp_Exercise_Answer.Applications.Domains;
 namespace WebApp_Exercise_Answer.Applications.Services;
+/// <summary>
+/// 商品カテゴリ登録サービスインターフェイス
+/// </summary>
 public interface IProductCategoryRegisterService
 {
     /// <summary>
