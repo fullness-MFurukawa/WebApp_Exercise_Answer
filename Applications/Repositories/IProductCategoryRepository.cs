@@ -18,7 +18,7 @@ public interface IProductCategoryRepository
     /// <param name="id">商品カテゴリId</param>
     /// <returns>該当商品カテゴリ</returns>
     /// <exception cref="InternalException">データベースアクセスエラー</exception>
-    Product FindById(int id);
+    ProductCategory? FindById(int id);
 
     /// <summary>
     /// 引数に指定された商品カテゴリ名の存在有無を取得する
