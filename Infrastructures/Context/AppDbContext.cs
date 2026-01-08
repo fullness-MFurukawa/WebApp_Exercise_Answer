@@ -9,15 +9,15 @@ public class AppDbContext : DbContext
     /// <summary>
     /// product_categoryテーブルにアクセスするプロパティ
     /// </summary>
-    public DbSet<ProductCategoryEntity> ProductCategories { get; set; }
+    public DbSet<ItemCategoryEntity> ItemCategories { get; set; }
     /// <summary>
     /// productテーブルにアクセスするプロパティ
     /// </summary>
-    public DbSet<ProductEntity> Products { get; set; }
+    public DbSet<ItemEntity> Items { get; set; }
     /// <summary>
     /// product_stockテーブルにアクセスするプロパティ
     /// </summary>
-    public DbSet<ProductStockEntity> ProductStocks { get; set; }
+    public DbSet<ItemStockEntity> ItemStocks { get; set; }
 
     /// <summary>
     /// コンストラクタ
@@ -35,19 +35,19 @@ public class AppDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        // ProductとProductCategory:多対1リレーション
-        modelBuilder.Entity<ProductEntity>()
+        // ItemとItemCategory:多対1リレーション
+        modelBuilder.Entity<ItemEntity>()
             .HasOne(p => p.Category)
-            .WithMany(c => c.Products)
+            .WithMany(c => c.Items)
             .HasForeignKey(p => p.CategoryId)
             // 外部キーで参照されている親エンティティを削除しようとしたときに、エラーが発生して削除できない
             .OnDelete(DeleteBehavior.Restrict);
 
-        // ProductとProductStock:1対1リレーション
-        modelBuilder.Entity<ProductEntity>()
+        // ItemとItemStock:1対1リレーション
+        modelBuilder.Entity<ItemEntity>()
             .HasOne(p => p.Stock)
             .WithOne(ps => ps.Product)
-            .HasForeignKey<ProductStockEntity>(ps => ps.ProductId)
+            .HasForeignKey<ItemStockEntity>(ps => ps.ItemId)
             // 親エンティティが削除されたときに、関連する子エンティティも自動的に削除される
             .OnDelete(DeleteBehavior.Cascade); 
     }

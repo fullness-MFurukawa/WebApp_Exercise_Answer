@@ -3,7 +3,7 @@ namespace WebApp_Exercise_Answer.Applications.Domains;
 /// <summary>
 /// 商品在庫を表すドメインオブジェクト
 /// </summary>
-public class ProductStock
+public class ItemStock
 {
     /// <summary>
     /// 在庫Id
@@ -16,13 +16,13 @@ public class ProductStock
     /// <summary>
     /// 商品
     /// </summary>
-    public Product? Product { get; private set; } = null;
+    public Item? Item { get; private set; } = null;
     /// <summary>
     /// コンストラクタ
     /// </summary>
     /// <param name="id">商品在庫Id</param>
     /// <param name="stock">商品在庫数</param>
-    public ProductStock(int? id, int stock)
+    public ItemStock(int? id, int stock)
     {
         // 商品在庫Idのルール検証
         ValidateId(id);
@@ -35,7 +35,7 @@ public class ProductStock
     /// コンストラクタ
     /// </summary>
     /// <param name="stcok">商品在庫数</param>
-    public ProductStock(int stcok): this(null, stcok) { }
+    public ItemStock(int stcok): this(null, stcok) { }
    
     /// <summary>
     /// 商品在庫Idのルール検証
@@ -77,10 +77,10 @@ public class ProductStock
     /// <summary>
     /// 商品の変更
     /// </summary>
-    /// <param name="product"></param>
-    public void ChangeProduct(Product? product)
+    /// <param name="item"></param>
+    public void ChangeProduct(Item? item)
     {
-        Product = product;
+        Item = item;
     }
 
     /// <summary>
@@ -91,7 +91,7 @@ public class ProductStock
     public override bool Equals(object? obj)
     {
         if (ReferenceEquals(this, obj)) return true;
-        if (obj is not ProductStock other) return false;
+        if (obj is not ItemStock other) return false;
         return Id == other.Id;
     }
     public override int GetHashCode() => Id?.GetHashCode() ?? 0;
@@ -99,7 +99,7 @@ public class ProductStock
     public override string ToString()
     {
         var idText = Id?.ToString() ?? "未登録";
-        var productText = Product?.ToString() ?? "";
-        return $"商品在庫Id={idText},在庫数={Stock},商品={productText}"; 
+        var ItemText = Item?.ToString() ?? "";
+        return $"商品在庫Id={idText},在庫数={Stock},商品={ItemText}"; 
     }
 }

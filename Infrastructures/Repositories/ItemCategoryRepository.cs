@@ -8,19 +8,19 @@ namespace WebApp_Exercise_Answer.Infrastructures.Repositories;
 /// <summary>
 /// ドメインオブジェクト:商品カテゴリのCRUD操作インターフェイスの実装
 /// </summary>
-public class ProductCategoryRepository : IProductCategoryRepository
+public class ItemCategoryRepository : IItemCategoryRepository
 {
     // DbContext継承クラス
     private readonly AppDbContext _appDbContext;
-    // ドメインオブジェクト:ProductCategroyとProductCategoryEntityの相互変換Adapter
-    private readonly ProductCategoryEntityAdapter _adapter;
+    // ドメインオブジェクト:ItemCategroyとItemCategoryEntityの相互変換Adapter
+    private readonly ItemCategoryEntityAdapter _adapter;
     /// <summary>
     /// コンストラクタ
     /// </summary>
     /// <param name="adapter">ドメインオブジェクト:ProductCategroyとProductCategoryEntityの相互変換Adapter</param>
-    public ProductCategoryRepository(
+    public ItemCategoryRepository(
         AppDbContext appDbContext ,
-        ProductCategoryEntityAdapter adapter)
+        ItemCategoryEntityAdapter adapter)
     {
         _appDbContext = appDbContext;
         _adapter = adapter;
@@ -29,16 +29,16 @@ public class ProductCategoryRepository : IProductCategoryRepository
     /// <summary>
     /// 商品カテゴリを永続化する
     /// </summary>
-    /// <param name="productCategory">永続化する商品カテゴリ</param>
+    /// <param name="itemCategory">永続化する商品カテゴリ</param>
     /// <exception cref="InternalException">データベースアクセスエラー</exception>
-    public void Create(ProductCategory productCategory)
+    public void Create(ItemCategory itemCategory)
     {
         try
         {
             // ProductCategoryをProductCategoryEntityに変換する
-            var entity = _adapter.Convert(productCategory);
+            var entity = _adapter.Convert(itemCategory);
             // 商品カテゴリを登録する
-            _appDbContext.ProductCategories.Add(entity);
+            _appDbContext.ItemCategories.Add(entity);
             // 登録を確定する
             _appDbContext.SaveChanges();
         }
@@ -59,7 +59,7 @@ public class ProductCategoryRepository : IProductCategoryRepository
         try
         {
             // 指定された商品カテゴリ名の有無を取得する
-            var result = _appDbContext.ProductCategories
+            var result = _appDbContext.ItemCategories
                 .Where(c => c.Name == name).Any();  
             return result;
         }
@@ -75,21 +75,21 @@ public class ProductCategoryRepository : IProductCategoryRepository
     /// </summary>
     /// <returns>すべての商品カテゴリ</returns>
     /// <exception cref="InternalException">データベースアクセスエラー</exception>
-    public List<ProductCategory> FindAll()
+    public List<ItemCategory> FindAll()
     {
         try
         {
             // すべての商品カテゴリを取得する
-            var entities = _appDbContext.ProductCategories
+            var entities = _appDbContext.ItemCategories
                 .AsNoTracking().ToList();
-            // ProductCategoryのリストを作成する
-            var productCategories = new List<ProductCategory>();
+            // ItemCategoryのリストを作成する
+            var itemCategories = new List<ItemCategory>();
             //　取得したEntityからドメインオブジェクトを復元してリストに追加する
             foreach (var entity in entities)
             {
-                productCategories.Add(_adapter.Restore(entity));
+                itemCategories.Add(_adapter.Restore(entity));
             }
-            return productCategories;
+            return itemCategories;
         }
         catch (Exception e)
         {
@@ -103,12 +103,12 @@ public class ProductCategoryRepository : IProductCategoryRepository
     /// <param name="id">商品カテゴリId</param>
     /// <returns>該当商品カテゴリ</returns>
     /// <exception cref="InternalException">データベースアクセスエラー</exception>
-    public ProductCategory? FindById(int id)
+    public ItemCategory? FindById(int id)
     {
         try
         {
             // Idで商品カテゴリを取得する
-            var entity = _appDbContext.ProductCategories
+            var entity = _appDbContext.ItemCategories
             .Where(c => c.Id == id).FirstOrDefault();
             // 存在しない場合はnullを返す
             if (entity == null)

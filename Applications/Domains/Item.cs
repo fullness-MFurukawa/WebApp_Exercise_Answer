@@ -3,7 +3,7 @@ namespace WebApp_Exercise_Answer.Applications.Domains;
 /// <summary>
 /// 商品を表すドメインオブジェクト
 /// </summary>
-public class Product 
+public class Item 
 {
     /// <summary>
     /// 商品Id
@@ -20,11 +20,11 @@ public class Product
     /// <summary>
     /// 商品カテゴリ
     /// </summary>
-    public ProductCategory? ProductCategory { get; private set; } = null;
+    public ItemCategory? ItemCategory { get; private set; } = null;
     /// <summary>
     /// 商品在庫
     /// </summary>
-    public ProductStock? ProductStock { get; private set; } = null;
+    public ItemStock? ItemStock { get; private set; } = null;
     
     /// <summary>
     /// コンストラクタ
@@ -32,7 +32,7 @@ public class Product
     /// <param name="id">商品Id</param>
     /// <param name="name">商品名</param>
     /// <param name="price">単価</param>
-    public Product(int? id , string? name , int? price)
+    public Item(int? id , string? name , int? price)
     {
         ValidateId(id);
         ValidateName(name);
@@ -47,7 +47,7 @@ public class Product
     /// </summary>
     /// <param name="name">商品名</param>
     /// <param name="price">単価</param>
-    public Product(string? name , int? price) :this (null , name , price) {}
+    public Item(string? name , int? price) :this (null , name , price) {}
 
     /// <summary>
     /// 商品Idのルール検証
@@ -112,9 +112,9 @@ public class Product
     /// <summary>
     /// 商品カテゴリの変更
     /// </summary>
-    public void ChangeProductCategory(ProductCategory? productCategory)
+    public void ChangeProductCategory(ItemCategory? itemCategory)
     {
-        ProductCategory = productCategory;
+        ItemCategory = itemCategory;
     }
 
     /// <summary>
@@ -123,7 +123,7 @@ public class Product
     public override bool Equals(object? obj)
     {
         if (ReferenceEquals(this, obj)) return true;
-        if (obj is not Product other) return false;
+        if (obj is not Item other) return false;
         return Id == other.Id;
     }
 
@@ -134,8 +134,8 @@ public class Product
         var idText = Id?.ToString() ?? "未登録";
         var nameText = string.IsNullOrWhiteSpace(Name) ? "未登録" : Name;
         var priceText = Price?.ToString() ?? "未登録";
-        var categoryText = ProductCategory?.ToString() ?? "未登録";
-        var stockText = ProductStock?.ToString() ?? "未登録"; 
+        var categoryText = ItemCategory?.ToString() ?? "未登録";
+        var stockText = ItemStock?.ToString() ?? "未登録"; 
         return $"商品Id={idText},商品名={nameText},単価={priceText},商品カテゴリ={categoryText},商品在庫={stockText}";
     }   
 }

@@ -2,23 +2,26 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace WebApp_Exercise_Answer.Infrastructures.Entities;
 /// <summary>
-/// 商品テーブル(product)を扱うEntity Framework Coreのエンティティクラス
+/// 商品テーブル(item)を扱うEntity Framework Coreのエンティティクラス
 /// </summary>
-[Table("product")]
-public class ProductEntity
+[Table("item")]
+public class ItemEntity
 {
     /// <summary>
     /// 商品Id
     /// </summary>
     [Key]
+    [Column("id")]
     public int? Id { get; set; }
     /// <summary>
     /// 商品名
     /// </summary>
+    [Column("name")]
     public string? Name { get; set; }
     /// <summary>
     /// 単価
     /// </summary>
+    [Column("price")]
     public int? Price { get; set; }
     /// <summary>
     /// 商品カテゴリId
@@ -30,10 +33,10 @@ public class ProductEntity
     /// 外部で結合する商品カテゴリ
     /// </summary>
     [ForeignKey("CategoryId")]
-    public ProductCategoryEntity? Category { get; set; }
+    public ItemCategoryEntity? Category { get; set; }
     /// <summary>
     /// ナビゲーション（1対1）
     /// 商品在庫
     /// </summary>
-    public ProductStockEntity? Stock { get; set; }
+    public ItemStockEntity? Stock { get; set; }
 }

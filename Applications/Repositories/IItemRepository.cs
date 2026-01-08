@@ -3,7 +3,7 @@ namespace WebApp_Exercise_Answer.Applications.Repositories;
 /// <summary>
 /// ドメインオブジェクト:商品のCRUD操作インターフェイス
 /// </summary>
-public interface IProductRepository
+public interface IItemRepository
 {
     /// <summary>
     /// 引数Idに一致する商品を取得する
@@ -11,6 +11,6 @@ public interface IProductRepository
     /// <param name="id">商品Id</param>
     /// <returns>該当商品</returns>
     /// <exception cref="InternalException">データベースアクセスエラー</exception>
-    Product FindById(int id);
+    Item FindById(int id);
 }
 

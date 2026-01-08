@@ -3,7 +3,7 @@ namespace WebApp_Exercise_Answer.Applications.Domains;
 /// <summary>
 /// 商品カテゴリを表すドメインオブジェクト
 /// </summary>
-public class ProductCategory 
+public class ItemCategory 
 {
     /// <summary>
     /// 商品カテゴリId
@@ -17,7 +17,7 @@ public class ProductCategory
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    public ProductCategory(int? id, string? name)
+    public ItemCategory(int? id, string? name)
     {   
         // 商品カテゴリIdのルール検証
         ValidateId(id);
@@ -29,13 +29,13 @@ public class ProductCategory
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    public ProductCategory(string? name) : this(null , name) {}
+    public ItemCategory(string? name) : this(null , name) {}
 
     /// <summary>
     /// コンストラクタ
     /// </summary>
     /// <param name="id"></param>
-    public ProductCategory(int? id) : this(id , null) {}
+    public ItemCategory(int? id) : this(id , null) {}
     
     /// <summary>
     /// 商品カテゴリIdのルール検証
@@ -88,7 +88,7 @@ public class ProductCategory
     public override bool Equals(object? obj)
     {
         if (ReferenceEquals(this, obj)) return true;
-        if (obj is not ProductCategory other) return false;
+        if (obj is not ItemCategory other) return false;
         return Id == other.Id;
     }
     public override int GetHashCode() => Id?.GetHashCode() ?? 0;
