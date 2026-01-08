@@ -112,10 +112,19 @@ public class Item
     /// <summary>
     /// 商品カテゴリの変更
     /// </summary>
-    public void ChangeProductCategory(ItemCategory? itemCategory)
+    public void ChangeItemCategory(ItemCategory? itemCategory)
     {
         ItemCategory = itemCategory;
     }
+
+    /// <summary>
+    /// 商品在庫の変更
+    /// </summary>
+    public void ChangeStock(ItemStock? stock)
+    {
+        ItemStock = stock;
+    }
+
 
     /// <summary>
     /// 等価性の検証（Idが一致していれば同一とみなす）

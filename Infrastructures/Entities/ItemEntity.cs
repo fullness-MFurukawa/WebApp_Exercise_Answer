@@ -12,7 +12,7 @@ public class ItemEntity
     /// </summary>
     [Key]
     [Column("id")]
-    public int? Id { get; set; }
+    public int Id { get; set; }
     /// <summary>
     /// 商品名
     /// </summary>

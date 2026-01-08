@@ -11,7 +11,7 @@ public class ItemStockEntity {
     /// </summary>
     [Key]
     [Column("id")]
-    public int? Id { get; set; }
+    public int Id { get; set; }
     /// <summary>
     /// 在庫数
     /// </summary>

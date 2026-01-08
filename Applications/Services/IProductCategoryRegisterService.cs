@@ -10,10 +10,10 @@ public interface IProductCategoryRegisterService
     /// </summary>
     /// <param name="name">商品カテゴリ名</param>
     /// <exception cref="ExistsExceotioin">存在する場合にスローする例外</exception>
-    void Exists(string name);   
+   // void Exists(string name);   
     /// <summary>
     /// 商品カテゴリを永続化する
     /// </summary>
     /// <param name="productCategory">永続化する商品カテゴリ</param>
-    void Register(ProductCategory productCategory);
+    //void Register(ProductCategory productCategory);
 }

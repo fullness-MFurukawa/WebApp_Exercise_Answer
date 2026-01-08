@@ -11,7 +11,7 @@ public class ItemCategoryEntity {
     /// </summary>
     [Key]
     [Column("id")]
-    public int? Id { get; set; }
+    public int Id { get; set; }
     /// <summary>
     /// 商品カテゴリ名
     /// </summary>

@@ -12,62 +12,17 @@ public class ItemCategoryRepository : IItemCategoryRepository
 {
     // DbContext継承クラス
     private readonly AppDbContext _appDbContext;
-    // ドメインオブジェクト:ItemCategroyとItemCategoryEntityの相互変換Adapter
+    // ItemCategroyとItemCategoryEntityの相互変換
     private readonly ItemCategoryEntityAdapter _adapter;
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    /// <param name="adapter">ドメインオブジェクト:ProductCategroyとProductCategoryEntityの相互変換Adapter</param>
+    /// <param name="adapter">ItemCategroyとItemCategoryEntityの相互変換</param>
     public ItemCategoryRepository(
-        AppDbContext appDbContext ,
-        ItemCategoryEntityAdapter adapter)
+        AppDbContext appDbContext ,ItemCategoryEntityAdapter adapter)
     {
         _appDbContext = appDbContext;
         _adapter = adapter;
-    }
-
-    /// <summary>
-    /// 商品カテゴリを永続化する
-    /// </summary>
-    /// <param name="itemCategory">永続化する商品カテゴリ</param>
-    /// <exception cref="InternalException">データベースアクセスエラー</exception>
-    public void Create(ItemCategory itemCategory)
-    {
-        try
-        {
-            // ProductCategoryをProductCategoryEntityに変換する
-            var entity = _adapter.Convert(itemCategory);
-            // 商品カテゴリを登録する
-            _appDbContext.ItemCategories.Add(entity);
-            // 登録を確定する
-            _appDbContext.SaveChanges();
-        }
-        catch (Exception e)
-        {
-            throw new InternalException("商品カテゴリを永続化できませんでした。", e);
-        }
-    }
-
-    /// <summary>
-    /// 引数に指定された商品カテゴリ名の存在有無を取得する
-    /// </summary>
-    /// <param name="name">商品カテゴリ名</param>
-    /// <returns>true:存在する false:存在しない</returns>
-    /// <exception cref="InternalException">データベースアクセスエラー</exception>
-    public bool ExistsByName(string name)
-    {
-        try
-        {
-            // 指定された商品カテゴリ名の有無を取得する
-            var result = _appDbContext.ItemCategories
-                .Where(c => c.Name == name).Any();  
-            return result;
-        }
-        catch (Exception e)
-        {
-            throw new InternalException(
-                "商品カテゴリ名の存在有無を取得できませんでした。", e);
-        }
     }
 
     /// <summary>
@@ -84,7 +39,7 @@ public class ItemCategoryRepository : IItemCategoryRepository
                 .AsNoTracking().ToList();
             // ItemCategoryのリストを作成する
             var itemCategories = new List<ItemCategory>();
-            //　取得したEntityからドメインオブジェクトを復元してリストに追加する
+            // 取得したEntityからドメインオブジェクトを復元してリストに追加する
             foreach (var entity in entities)
             {
                 itemCategories.Add(_adapter.Restore(entity));
@@ -115,7 +70,7 @@ public class ItemCategoryRepository : IItemCategoryRepository
             {
                 return null;
             }
-            //　取得したEntityからドメインオブジェクトを復元して返す
+            // 取得したEntityからドメインオブジェクトを復元して返す
             return _adapter.Restore(entity);
         }
         catch (Exception e)
